@@ -3,6 +3,8 @@ const app = express();
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 require("./db").dbConnect();
+require("./db").initDBListeners();
+
 
 const port = process.env.PORT || 8080;
 

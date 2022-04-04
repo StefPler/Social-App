@@ -1,16 +1,15 @@
-const Message = require('../schemas/Messages');
-
+const { MessageModel} = require('../schemas/Chats');
 class MessageService {
 
     async createMessage(data) {
-        return Message.create({
+        return MessageModel.create({
             userId: "anid2",
             content: "test message2"
         });
     }
 
     async getMessages() {
-        return Message.find({});
+        return MessageModel.find({});
     }
 
     async getMessage() {
