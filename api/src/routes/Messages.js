@@ -5,18 +5,22 @@ const msg = new messages();
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-    let rz = await msg.getMessages();
-    console.log(rz);
-    res.status(200).send("Messages results");
+    let messages = await msg.getMessages();
+    res.status(200).send(messages);
 });
 
-router.get("/:id", (req, res) => {
-    res.status(200).send("Message result");
+router.get("/:id", async (req, res) => {
+    const data = {
+        id: req.params.id
+    };
+    let message = await msg.getMessage(data);
+    res.status(200).send(message);
 });
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
     console.log('body:', req.body);
-    res.status(200).send("Message results");
+    const message = await msg.createMessage(req.body);
+    res.status(200).send(message);
 });
 
 router.put("/:id", (req, res) => {

@@ -28,9 +28,13 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
+app.use(express.json());
 // Routes
 const messages = require("./routes/Messages");
 app.use('/api/messages', messages);
+
+const chats = require("./routes/Chats");
+app.use('/api/chats', chats);
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
